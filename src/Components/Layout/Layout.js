@@ -1,14 +1,17 @@
-import React from 'react';
-import Aux from '../../Hoc/Aux';
+import React, { Component } from 'react';
+import classes from '../../assets/css/style.scss';
 
-let layout = (props) => {
-  return (
-    <Aux classes="red">
-      <main>
-        {props.children}
-      </main>
-    </Aux>
-  )
+class Layout extends Component {
+  render() {
+    return (
+      <div className={classes.bgRed}>
+        <div>Toolbar, Sidebar, Backdrop</div>
+        <main>
+          {this.props.children}
+        </main>
+      </div>
+    );
+  }
 }
 
-export default layout;
+export default Layout;

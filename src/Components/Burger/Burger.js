@@ -1,21 +1,19 @@
 import React from 'react';
-import classes from './Burger.css'
 import BurgerIngredient from './BurgerIngredients/BurgerIngredients';
+import classes from '../../assets/css/style.scss'
+
 
 let burger = (props) => {
-  let transformedIngredients = Object.keys(props.ingredients).map((igKey) => {
-    // console.log('igKey', igKey)
-    // console.log('i', i)
-    return [...Array(props.ingredients[igKey])].map((__, index) => {
-      return <BurgerIngredient key={igKey + index} type={igKey} />
+  let transformIngredients = Object.keys(props.ingredients).map(ingredientKey => {
+    return [...Array(props.ingredients[ingredientKey])].map((__, i) => {
+      return <BurgerIngredient key={ingredientKey + i} type={ingredientKey} />
     })
   })
-
   return (
-    <div className={classes.Burger}>
-      <BurgerIngredient type="bread-top" />
-      {transformedIngredients}
-      <BurgerIngredient type="bread-bottom" />
+    <div className={classes.burger}>
+      <BurgerIngredient type="bread-top"/>
+      {transformIngredients}
+      <BurgerIngredient type="bread-bottom"/>
     </div>
   )
 }
