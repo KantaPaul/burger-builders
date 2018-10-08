@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Burger from '../../components/Burger/Burger';
 import classes from '../../assets/css/style.scss';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
-
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
 let INGREDIENT_PRICE = {
   salad: .5,
@@ -19,7 +20,21 @@ class BurgerBuilder extends Component {
       cheese: 0,
       meat: 0      
     },
-    totalPrice: 4
+    totalPrice: 4,
+    purchaseAble: false,
+    purchasing: false
+  }
+
+  pruchasehandler = (ingredients) => {
+    let sum = Object.keys(ingredients).map(igKey => {
+      return ingredients[igKey];
+    }).reduce((sum, el) => {
+      return sum + el;
+    }, 0)
+
+    this.setState({
+      purchaseAble: sum > 0
+    })
   }
 
   addIngredients = (type) => {
@@ -36,6 +51,7 @@ class BurgerBuilder extends Component {
       totalPrice: newPrice,
       ingredients: updateIngredients
     })
+    this.pruchasehandler(updateIngredients)
   }
 
   removeIngredients = (type) => {
@@ -55,6 +71,13 @@ class BurgerBuilder extends Component {
       ingredients: updateIngredients,
       totalPrice: newPrice
     })
+    this.pruchasehandler(updateIngredients)
+  }
+
+  purchasingHandler = () => {
+    this.setState({
+      purchasing: true
+    })
   }
 
   render() {
@@ -68,12 +91,19 @@ class BurgerBuilder extends Component {
 
     return (
       <div className={classes.burgerwraper}>
+        <Modal show={this.state.purchasing}>
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Burger ingredients={this.state.ingredients}/>
-        <p className={classes.totalPrice}>Total Price is : {this.state.totalPrice.toFixed(2)}</p>
+        <div className="text-center mb-2">
+          <p className={classes.totalPrice}>Total Price is : <strong>{this.state.totalPrice.toFixed(2)}</strong></p>
+        </div>
         <BuildControls 
             addIngredients={this.addIngredients} 
             removeIngredients={this.removeIngredients}
             disabledInfo={disabledInfo}
+            purchasing={this.purchasingHandler}
+            orderButtonDiabled={this.state.purchaseAble}
         />
       </div>
     );

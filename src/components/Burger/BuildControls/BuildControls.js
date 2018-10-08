@@ -22,6 +22,15 @@ class BuildControls extends Component {
             />
           )
         })}
+        <div className="text-center my-3">
+          <button 
+            className="btn btn-info" 
+            onClick={this.props.purchasing} 
+            disabled={!this.props.orderButtonDiabled}
+          >
+            ORDER NOW
+          </button>
+        </div>
       </div>
     )
   }
