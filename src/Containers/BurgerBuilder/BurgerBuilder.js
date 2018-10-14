@@ -80,6 +80,12 @@ class BurgerBuilder extends Component {
     })
   }
 
+  purchaseCancelhandler = () => {
+    this.setState({
+      purchasing: false
+    })
+  }
+
   render() {
 
     let disabledInfo = {
@@ -90,21 +96,25 @@ class BurgerBuilder extends Component {
     }
 
     return (
-      <div className={classes.burgerwraper}>
-        <Modal show={this.state.purchasing}>
-          <OrderSummary ingredients={this.state.ingredients} />
-        </Modal>
-        <Burger ingredients={this.state.ingredients}/>
-        <div className="text-center mb-2">
-          <p className={classes.totalPrice}>Total Price is : <strong>{this.state.totalPrice.toFixed(2)}</strong></p>
+      <div>
+        <div className={classes.burgerwraper}>
+          <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelhandler}>
+            <OrderSummary ingredients={this.state.ingredients} price={this.state.totalPrice} cancled={this.purchaseCancelhandler} />
+          </Modal>
+          <Burger ingredients={this.state.ingredients}/>
+          <div className="text-center mb-2">
+            <p className={classes.totalPrice}>Total Price is : <strong>{this.state.totalPrice.toFixed(2)}</strong></p>
+          </div>
         </div>
-        <BuildControls 
+        <div className={classes.controlPanle}>
+          <BuildControls 
             addIngredients={this.addIngredients} 
             removeIngredients={this.removeIngredients}
             disabledInfo={disabledInfo}
             purchasing={this.purchasingHandler}
             orderButtonDiabled={this.state.purchaseAble}
-        />
+          />
+        </div>
       </div>
     );
   }

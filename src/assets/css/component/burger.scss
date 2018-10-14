@@ -15,3 +15,9 @@
   font-weight: 700;
   font-size: rem(20px);
 }
+
+.control-panle {
+  background-color: lighten($color: orange, $amount: 20);
+  text-align: center;
+  padding: 5% 0;
+}

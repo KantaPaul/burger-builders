@@ -28,7 +28,7 @@ module.exports = (env) => {
                                 sourceMap: true,
                                 modules: true,
                                 camelCase: true,
-                                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                localIdentName: '[name]__[path]__[local]--[hash:base64:5]',
                                 minimize: true
                             }
                         },
@@ -38,7 +38,7 @@ module.exports = (env) => {
                                 sourceMap: true,
                                 modules: true,
                                 camelCase: true,
-                                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                                localIdentName: '[name]__[path]__[local]--[hash:base64:5]',
                                 minimize: true
                             }
                         }
@@ -56,7 +56,7 @@ module.exports = (env) => {
                         sourceMap: true,
                         modules: true,
                         camelCase: true,
-                        localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                        localIdentName: '[name]__[path]__[local]--[hash:base64:5]',
                         minimize: true
                     }
                 },

@@ -10,7 +10,7 @@ class BuildControls extends Component {
       {label: 'Meat', type: 'meat'},
     ]
     return (
-      <div className="card">
+      <div>
         {controls.map((ctrl) => {
           return (
             <BuildControl 

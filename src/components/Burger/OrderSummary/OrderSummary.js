@@ -6,12 +6,19 @@ let orderSummary = (props) => {
   })
   return (
     <div>
-      <h3>Your Order</h3>
-      <p>A delicious burger</p>
+      <div className="text-center mb-2">
+        <h3>Your Order</h3>
+        <p>A delicious burger</p>
+      </div>
       <ul className="list-group mb-2">
         {ingredientSummary}
       </ul>
-      <p>Continue To Checkout</p>
+      <p>Total Price : <strong>{props.price.toFixed(2)}</strong></p>
+      <p><strong>Continue To Checkout</strong></p>
+      <div>
+        <button onClick={props.cancled} className="btn btn-danger mr-2">CANCELD</button>
+        <button onClick={props.continue} className="btn btn-primary">CONTINUE</button>
+      </div>
     </div>
   )
 }
